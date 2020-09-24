@@ -10,6 +10,7 @@ public class AirplaneOrigami : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] SpawnShine _shineSpawner;
     [SerializeField] LevelManager _levelManager;
+    [SerializeField] AudioClip _foldSound; 
 
     [Header("Airplanes")]
     [SerializeField] GameObject _airplaneModel;
@@ -39,6 +40,7 @@ public class AirplaneOrigami : MonoBehaviour
     {
         scores.Add(currentStep.Head.Score);
         _animator.SetTrigger("Fold");
+        AudioFXPlayer.Instance.PlaySound(_foldSound, 0.6f);
         currentStep.gameObject.SetActive(false);
         index++;
         if (index < steps.Count){

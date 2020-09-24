@@ -22,6 +22,7 @@ public class CoinsDropper : MonoBehaviour
 {
     [SerializeField] GameObject _coinPrefab;
     [SerializeField] Vector2 _offset;
+    [SerializeField] AudioClip _dropCoinSound;
     private List<GameObject> spawnedCoins = new List<GameObject>();
     private void OnDrawGizmosSelected()
     {
@@ -35,6 +36,7 @@ public class CoinsDropper : MonoBehaviour
         coin.transform.position = transform.position + Vector3.right * Random.Range(-_offset.x / 2, _offset.x / 2) + Vector3.forward * Random.Range(-_offset.y / 2, _offset.y / 2);
         coin.transform.rotation = Random.rotation;
         spawnedCoins.Add(coin);
+        AudioFXPlayer.Instance.PlaySound(_dropCoinSound, 0.5f);
     }
     public void Reset()
     {

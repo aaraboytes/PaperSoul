@@ -9,6 +9,7 @@ public class MainMenuTransition : MonoBehaviour
     [Header("UI main menu elements")]
     [SerializeField] Image _title;
     [SerializeField] TextMeshProUGUI _clicToStart;
+    [SerializeField] TextMeshProUGUI _titleText;
     [SerializeField] Button _button;
     [Header("Scene components")]
     [SerializeField] Transform _camera;
@@ -25,11 +26,14 @@ public class MainMenuTransition : MonoBehaviour
         LeanTween.value(1, 0, 1f).setOnUpdate((val) =>
         {
             Color currentTitleColor = _title.color;
+            Color currentTitleText= _titleText.color;
             Color currentClicColor = _clicToStart.color;
             currentClicColor.a = val;
             currentTitleColor.a = val;
+            currentTitleText.a = val;
             _title.color = currentTitleColor;
             _clicToStart.color = currentClicColor;
+            _titleText.color = currentTitleText;
         });
         LeanTween.move(_camera.gameObject, _targetCamPos.position,2f).setOnComplete(
         ()=> {

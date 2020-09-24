@@ -14,7 +14,7 @@ public class AvionControl : MonoBehaviour
 	public Rigidbody body;
 	public Vector3 centerOfMass;
 	public UnityAction OnCrashed;
-
+	public AudioClip _paperCrashSound;
 	private bool collision;
 	private bool firstLaunch = true;
 	private float drag;
@@ -98,6 +98,7 @@ public class AvionControl : MonoBehaviour
 		if (other.gameObject.CompareTag("Ground") && !collision)
 		{
 			collision = true;
+			AudioFXPlayer.Instance.PlaySound(_paperCrashSound, 0.5f);
 			OnCrashed?.Invoke();
 		}
     }
